@@ -1,0 +1,19 @@
+[package]
+name = "article_api"
+version = "0.1.0"
+edition = "2021"
+
+[dependencies]
+actix-web.workspace = true
+diesel.workspace = true
+dotenv.workspace = true
+uuid.workspace = true
+serde.workspace = true
+serde_json.workspace = true
+actix-rt.workspace = true
+actix-web-actors.workspace = true
+actix-cors.workspace = true
+log.workspace = true
+env_logger.workspace = true
+chrono.workspace = true
+
