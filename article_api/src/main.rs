@@ -1,8 +1,8 @@
 use actix_web::{web, App, HttpServer, Responder};
 use diesel::r2d2::{self, ConnectionManager};
 use diesel::PgConnection;
-use std::env;
 use dotenv::dotenv;
+use std::env;
 
 pub mod handlers;
 pub mod models;
@@ -21,11 +21,10 @@ async fn main() -> std::io::Result<()> {
 
     HttpServer::new(move || {
         App::new()
-        .app_data(web::Data::new(pool.clone()))
+            .app_data(web::Data::new(pool.clone()))
             .configure(handlers::init)
     })
-        .bind("127.0.0.1:8080")?
+    .bind("127.0.0.1:8080")?
     .run()
-        .await
-
+    .await
 }
