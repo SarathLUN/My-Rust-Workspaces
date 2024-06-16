@@ -1,15 +1,13 @@
 [workspace]
 resolver = "2"
-members = [ "actix-diesel-sqlite" , "article_api"]
-default_members = ["article_api"]
-default_run = ["article_api"]
+members = [ "actix-diesel-sqlite" , "article_api", "events_api"]
+default_members = ["events_api"]
 
 [workspace.dependencies]
 actix = "0.13.5"
 actix-web = "4.7.0"
 actix-web-actors = "4.3.0"
 actix-cors = "0.7.0"
-
 diesel = {version = "2.2.1", features = ["postgres","r2d2","chrono","uuid"] }
 dotenv = "0.15.0"
 dotenvy = "0.15.7"
@@ -20,4 +18,7 @@ serde = { version="1.0", features=["derive"] }
 serde_json = { version="1.0" }
 actix-rt = "2.10"
 chrono = {version = "0.4", features = ["serde"]}
+diesel_migrations = { version = "2.2.0", features = ["postgres"] }
+r2d2 = "0.8.10"
+
 

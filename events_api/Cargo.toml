@@ -1,0 +1,15 @@
+[package]
+name = "events_api"
+version = "0.1.0"
+edition = "2021"
+
+[dependencies]
+actix-web.workspace = true
+chrono = { workspace = true, features = ["serde"] }
+diesel = { workspace = true, features = ["postgres", "r2d2", "chrono", "uuid"] }
+diesel_migrations.workspace = true
+dotenv.workspace = true
+env_logger.workspace = true
+r2d2.workspace = true
+serde = { workspace = true, features = ["derive"] }
+uuid = { workspace = true, features = ["v4"] }
