@@ -1,0 +1,16 @@
+### GET request to example server
+GET http://localhost:8080/api/events
+
+### GET request to example server
+GET http://localhost:8080/api/event/2
+
+### Send POST request with json body
+POST http://localhost:8080/api/event
+Content-Type: application/json
+
+{
+  "name": "Test event 2",
+  "description": "Test description from test event 2.",
+  "location": "Phnom Penh"
+}
+

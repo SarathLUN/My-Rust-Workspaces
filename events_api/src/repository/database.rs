@@ -23,4 +23,20 @@ impl Database {
     pub fn get_events(&self) -> Vec<Event>{
         events.load::<Event>(&mut self.pool.get().unwrap()).expect("Failed to get events.")
     }
+
+    pub fn get_event(&self, find_id: i32) -> Option<Event>{
+        events.find(find_id).first::<Event>(&mut self.pool.get().unwrap()).ok()
+    }
+
+    pub fn create_event(&self, new_event: NewEvent)-> Result<Event, diesel::result::Error>{
+        diesel::insert_into(events).values(&new_event).get_result(&mut self.pool.get().unwrap())
+    }
+
+    pub fn delete_event(&self, find_id: i32)->Result<usize, diesel::result::Error>{
+        diesel::delete(events.filter(id.eq(find_id))).execute(&mut self.pool.get().unwrap())
+    }
+
+    pub fn update_event(&self, event: Event)->Result<Event, diesel::result::Error>{
+        diesel::update(events.filter(id.eq(event.id))).set(&event).get_result(&mut self.pool.get().unwrap())
+    }
 }
