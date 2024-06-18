@@ -1,3 +1,5 @@
+# How to build a REST Api with Rust, Diesel and Postgres, part 1: setting up
+
 - start postgres container with `events_db`
 ```shell
 docker run -d --name events_db -p 5432:5432 -e POSTGRES_USER=events_api -e POSTGRES_PASSWORD=events_api -e POSTGRES_DB=events_db -e PGDATA=/var/lib/postgresql/data/pgdata -v ./database/mounts:/var/lib/postgresql/data postgres:16.3-alpine
