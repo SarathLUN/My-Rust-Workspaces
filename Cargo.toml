@@ -1,6 +1,6 @@
 [workspace]
 resolver = "2"
-members = [ "actix-diesel-sqlite" , "article_api", "ehrm", "events_api"]
+members = [ "actix-diesel-sqlite" , "article_api", "events_api"]
 default_members = ["events_api"]
 
 [workspace.dependencies]
