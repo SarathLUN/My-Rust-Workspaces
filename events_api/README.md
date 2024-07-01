@@ -422,7 +422,9 @@ To be honest, writing this API took me quite some time (several weeks off and on
 
 The main difficulties for me were:
 
-1. The module system, so far I hadn’t really used and I found Rust’s system quite idiosyncratic to be honest
-2. Getting the automigrations right, which of course in the end turns out to be quite easy.
+1. The module system, so far I had not really used and I found Rust’s system quite idiosyncratic to be honest
+2. Getting the auto migrations right, which, of course, in the end turns out to be quite easy.
 
-The automigrations were important since I want to deploy this app to a Kubernetes cluster, but that will have to wait for my next post. Hope you enjoyed it.
+The auto migrations were important since I want to deploy this app to a Kubernetes cluster, but that will have to wait for my next post. Hope you enjoyed it.
+
+Now, let us continue to our part 2: [Deployment with Kubernetes](./README_2.md).
