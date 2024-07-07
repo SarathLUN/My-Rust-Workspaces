@@ -381,31 +381,56 @@ This will produce something like:
 |-----------|-------------|-------------|---------------------------|
 | NAMESPACE |    NAME     | TARGET PORT |            URL            |
 |-----------|-------------|-------------|---------------------------|
-| default   | web-service |          80 | http://192.168.49.2:32398 |
+| default   | web-service |          80 | http://192.168.49.2:30829 |
 |-----------|-------------|-------------|---------------------------|
 🏃  Starting tunnel for service web-service.
 |-----------|-------------|-------------|------------------------|
 | NAMESPACE |    NAME     | TARGET PORT |          URL           |
 |-----------|-------------|-------------|------------------------|
-| default   | web-service |             | http://127.0.0.1:56190 |
+| default   | web-service |             | http://127.0.0.1:50246 |
 |-----------|-------------|-------------|------------------------|
 🎉  Opening service default/web-service in default browser...
-❗  Because you are using a Docker driver on windows, the terminal needs to be open to run it.
+❗  Because you are using a Docker driver on darwin, the terminal needs to be open to run it.
+
 ```
 
-Note the second URL, in this case the one with port number 56190.
+Note the second URL, in this case the one with port number 50246.
 
-### Putting it through the test in Postman
+### Putting it through the test in Postman/cURL:
 
 For the rest of this post, I assume you have Postman installed, although all of these tests can be done using curl.
 
 Try using the url: `<url with port from minikube or url from external IP address with port>/api/events`. If things went right, you have an empty array `[]`
 
-Now try the following:
+In my case, I use `cURL` as below:
 
-![postman2.png](./postman2.png)
+```shell
+curl -X GET --location "http://localhost:50246/api/events"
+```
 
-And press [Send], you should get your event back with an ID.
+- output:
+
+```shell
+[]
+```
+
+Now, I try to create an event:
+
+```shell
+curl -X POST --location "http://localhost:50246/api/event" \
+    -H "Content-Type: application/json" \
+    -d '{
+          "name": "Test event 4",
+          "description": "Test description from test event 4.",
+          "location": "Phnom Penh"
+        }'
+```
+
+- output:
+
+```shell
+{"id":3,"name":"Test event 4","description":"Test description from test event 4.","location":"Phnom Penh"}
+```
 
 Now try the first URL and you should see an array with one element.
 
