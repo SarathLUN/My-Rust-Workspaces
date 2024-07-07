@@ -1,0 +1,13 @@
+apiVersion: v1
+kind: ConfigMap
+metadata:
+  name: db-secret-credentials
+  labels:
+    app: events-api
+data:
+  POSTGRES_DB: "events_db"
+  POSTGRES_USER: "events_api"
+  POSTGRES_PASSWORD: "events_api"
+  HOST: "events-db.default"
+  PORT: "5432"
+  DATABASE_URL: "postgres://events_api:events_api@events-db.default:5432/events_db"

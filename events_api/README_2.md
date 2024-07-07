@@ -52,7 +52,7 @@ Dockerfile
 Now in your terminal type:
 
 ```shell
-docker build -t <your dockerhub username>/eventsrust:latest .
+docker build -t tonysarath/eventsrust:latest .
 ```
 
 Make sure you have Docker desktop or at least the Docker daemon running. This command will build the docker image. Do not worry if this takes several minutes.
@@ -66,7 +66,7 @@ docker login
 That will log you in to the docker hub and then:
 
 ```shell
-docker push <your dockerhub username>/eventsrust:latest
+docker push tonysarath/eventsrust:latest
 ```
 
 This will push your image to the Docker hub for later use.
@@ -89,11 +89,12 @@ Another handy feature of Minikube is its dashboard. In a new terminal type:
 minikube dashboard
 ```
 
-We will use YAML-files to configure our Kubernetes cluster. Create a directory ‘kubernetes’ in the root directory of the project to put them in.
+We will use YAML-files to configure our Kubernetes cluster. Create a directory `kubernetes` in the root directory of the project to put them in.
 
 ### The configmap
 
-We will start with an easy one: the configmap. This resource stores key-value pairs which can be used as environment variables. In your kubernetes folder create a file called `db-configmap.yaml`:
+We will start with an easy one: 
+- the configmap: this resource stores key-value pairs which can be used as environment variables. In your kubernetes folder create a file called `db-configmap.yaml`:
 
 ```yaml
 apiVersion: v1
@@ -129,7 +130,7 @@ We will start with the persistent volume file `db-persistent-volume.yaml`:
 apiVersion: v1
 kind: PersistentVolume
 metadata:
-  name: events_db-pv
+  name: events-db-pv
   labels:
     type: local
     app: events_db
@@ -185,7 +186,7 @@ We also need to deploy a pod with the database itself. In your kubernetes direct
 apiVersion: apps/v1
 kind: Deployment
 metadata:
-  name: postgresdb
+  name: postgres-db
 spec:
   replicas: 1
   selector:
@@ -233,14 +234,14 @@ The web app needs to be able to access the database, in Kubernetes we use a serv
 apiVersion: v1
 kind: Service
 metadata:
-  name: events_db
+  name: events-db
   labels:
-    app: events_db
+    app: events-db
 spec:
   ports:
     - port: 5432
   selector:
-    app: events_db
+    app: events-db
 ```
 
 There are two things to note here:
